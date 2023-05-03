@@ -7,56 +7,54 @@
 {% block content %}
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-semibold mb-8">Manajer Dashboard</h1>
+    <div class="rounded bg-red-200 border-2 border-neutral-500 py-2 px-2 responsive"> 
+        <div class="flex flex-wrap -mx-2 mb-8">
+            <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="first_name">
+                    Nama Depan
+                </label>
+            <p class="text-gray-700 text-base"> Muhammad Rifqi Adli </p>
+                
+            </div>
+            <div class="w-full md:w-1/2 px-2">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="last_name">
+                    Nama Belakang
+                </label>
+                <p class="text-gray-700 text-base"> Gumay </p>
+            </div>
+        </div>
 
-    <div class="flex flex-wrap -mx-2 mb-8">
-        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="first_name">
-                Nama Depan
-            </label>
-           <p class="text-gray-700 text-base"> Muhammad Rifqi Adli </p>
-            
+        <div class="flex flex-wrap -mx-2 mb-8">
+            <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                    Nomor HP
+                </label>
+                <p class="text-gray-700 text-base"> 081278519230 </p>
+            </div>
+            <div class="w-full md:w-1/2 px-2">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
+                    Email
+                </label>
+                <p class="text-gray-700 text-base"> rifqibradley12@gmail.com </p>
+            </div>
         </div>
-        <div class="w-full md:w-1/2 px-2">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="last_name">
-                Nama Belakang
-            </label>
-            <p class="text-gray-700 text-base"> Gumay </p>
-        </div>
-    </div>
-
-    <div class="flex flex-wrap -mx-2 mb-8">
-        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
-                Nomor HP
-            </label>
-            <p class="text-gray-700 text-base"> 081278519230 </p>
-        </div>
-        <div class="w-full md:w-1/2 px-2">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
-                Email
-            </label>
-            <p class="text-gray-700 text-base"> rifqibradley12@gmail.com </p>
-        </div>
-    </div>
 
 
-    <div class="flex flex-wrap -mx-2 mb-8">
-        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
-                Alamat
-            </label>
-            <p class="text-gray-700 text-base"> Jalan doang pacaran kagak </p>
+        <div class="flex flex-wrap -mx-2 mb-8">
+            <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                    Alamat
+                </label>
+                <p class="text-gray-700 text-base"> Jalan doang pacaran kagak </p>
+            </div>
+            <div class="w-full md:w-1/2 px-2">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                    Tim
+                </label>
+                <p class="text-gray-700 text-base"> Persija Fc </p>
+            </div>
         </div>
-    </div>
 
-    {% comment %} tambahkan data tim yang dipegang {% endcomment %}
-    <div class="flex flex-wrap -mx-2 mb-8">
-        <div class="w-full px-2 mb-4 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
-                Tim
-            </label>
-            <p class="text-gray-700 text-base"> Persija Fc </p>
-        </div>
     </div>
 {% endblock content %}
 
