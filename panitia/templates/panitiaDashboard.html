@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %} 
+    <title>panitia dashboard </title>
+{% endblock meta %} 
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-semibold mb-8">Panitia Dashboard</h1>
+
+    <div class="flex flex-wrap -mx-2 mb-8">
+        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="first_name">
+                Nama Depan
+            </label>
+           <p class="text-gray-700 text-base"> Muhammad Rifqi Adli </p>
+            
+        </div>
+        <div class="w-full md:w-1/2 px-2">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="last_name">
+                Nama Belakang
+            </label>
+            <p class="text-gray-700 text-base"> Gumay </p>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap -mx-2 mb-8">
+        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                Nomor HP
+            </label>
+            <p class="text-gray-700 text-base"> 081278519230 </p>
+        </div>
+        <div class="w-full md:w-1/2 px-2">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
+                Email
+            </label>
+            <p class="text-gray-700 text-base"> rifqibradley12@gmail.com </p>
+        </div>
+    </div>
+
+
+    <div class="flex flex-wrap -mx-2 mb-8">
+        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                Alamat
+            </label>
+            <p class="text-gray-700 text-base"> Jalan doang pacaran kagak </p>
+        </div>
+        <div class="w-full md:w-1/2 px-2">
+            <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
+                Jabatan
+            </label>
+            <p class="text-gray-700 text-base"> Staff </p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-semibold mb-8">Rapat Incoming</h1>
+
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full md:w-1/3 px-4 mb-4">
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="px-6 py-4">
+                        <p class="text-gray-700 text-base">
+                            <span class="font-bold">ID_Pertandingan: </span> 124314123123<br>
+                            <span class="font-bold">Datetime: </span> 3 May 2023, 18.00 WIB <br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/3 px-4 mb-4">
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="px-6 py-4">                       
+                        <p class="text-gray-700 text-base">
+                            <span class="font-bold">ID_Pertandingan: </span> 14512312312<br>
+                            <span class="font-bold">Tanggal dan Waktu: </span> 4 May 2023, 18.00 WIB
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/3 px-4 mb-4">
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="px-6 py-4">                       
+                        <p class="text-gray-700 text-base">
+                            <span class="font-bold">ID_Pertandingan: </span> 1612353123<br>
+                            <span class="font-bold">Tanggal dan Waktu: </span> 5 May 2023, 18.00 WIB
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/3 px-4 mb-4">
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="px-6 py-4">                       
+                        <p class="text-gray-700 text-base">
+                            <span class="font-bold">ID_Pertandingan: </span> 1412312312<br>
+                            <span class="font-bold">Tanggal dan Waktu: </span> 6 May 2023, 18.00 WIB
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+    </div>
+
+</h1>
+</div>
+
+
+
+      
+{% endblock content %}
+

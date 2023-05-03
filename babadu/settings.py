@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'dashboard',
+    'manajer',
+    'panitia',
+    'penonton',
 ]
 
 MIDDLEWARE = [
