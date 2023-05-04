@@ -9,6 +9,9 @@ urlpatterns = [
     path('pinjamStadium', pinjamStadium, name='pinjamStadium'),
     path('pesanStadium', pesanStadium, name='pesanStadium'),
     path('listPertandingan', listPertandingan, name='listPertandingan'),
-    path('historyRapat', historyRapat, name='historyRapat')
-
+    path('historyRapat', historyRapat, name='historyRapat'),
+    path('kelolatim/', kelolaTim, name='kelolaTim'),
+    path('daftartim/', daftarTim, name='daftarTim'),
+    path('daftarpemain/', daftarPemain, name='daftarPemain'),
+    path('daftarpelatih/', daftarPelatih, name='daftarPelatih'),
 ]

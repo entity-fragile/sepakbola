@@ -18,3 +18,15 @@ def listPertandingan(request):
 
 def historyRapat(request):
     return render(request, 'historyRapat.html')
+
+def kelolaTim(request):
+    return render(request, 'kelolaTim.html')
+
+def daftarTim(request):
+    return render(request, 'registerTim.html')
+
+def daftarPemain(request):
+    return render(request, 'registerPemain.html')
+
+def daftarPelatih(request):
+    return render(request, 'registerPelatih.html')
