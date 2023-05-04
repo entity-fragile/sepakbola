@@ -1,13 +1,17 @@
 from django.urls import path
-from . import views
 from .views import *
 
 app_name = 'manajer'
 
 urlpatterns = [
-    path('', views.manajerDashboard, name='manajerDashboard'),
-    path('kelolatim/', views.kelolaTim, name='kelolaTim'),
-    path('daftartim/', views.daftarTim, name='daftarTim'),
-    path('daftarpemain/', views.daftarPemain, name='daftarPemain'),
-    path('daftarpelatih/', views.daftarPelatih, name='daftarPelatih'),
+    path('', manajerDashboard, name='manajerDashboard'),
+    path('listStadium', listStadium, name='listStadium'),
+    path('pinjamStadium', pinjamStadium, name='pinjamStadium'),
+    path('pesanStadium', pesanStadium, name='pesanStadium'),
+    path('listPertandingan', listPertandingan, name='listPertandingan'),
+    path('historyRapat', historyRapat, name='historyRapat'),
+    path('kelolatim/', kelolaTim, name='kelolaTim'),
+    path('daftartim/', daftarTim, name='daftarTim'),
+    path('daftarpemain/', daftarPemain, name='daftarPemain'),
+    path('daftarpelatih/', daftarPelatih, name='daftarPelatih'),
 ]
