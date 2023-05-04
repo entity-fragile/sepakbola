@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %} 
+    <title>Pesan Stadium</title>
+{% endblock meta %} 
+
+{% block content %}
+<head>
+    <style>
+      .button {
+        border: none;
+        color: #374151;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 8px;
+      }
+    </style>
+</head>
+
+<div class="container mx-auto px-4 sm:px-8">
+    <div class="py-8">
+      <div>
+        <h2 class="text-2xl font-semibold leading-tight">List Waktu Stadium Gelora Bung Karno</h2>
+      </div>
+      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+          <table class="min-w-full leading-normal">
+            <thead>
+              <tr>
+                <th
+                  class="px-5 py-3 border-b-2 border-red-200 bg-red-100 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  List Waktu
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-red-200 bg-red-100 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                        16.00
+                    </p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <button class="button shadow-xl bg-red-100">Pesan</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                        17.00
+                    </p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <button class="button shadow-xl bg-red-100">Pesan</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                        18.00
+                    </p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <button class="button shadow-xl bg-red-100">Pesan</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
