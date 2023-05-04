@@ -6,4 +6,5 @@ app_name = 'manajer'
 
 urlpatterns = [
     path('', views.manajerDashboard, name='manajerDashboard'),
+    path('kelolatim/', views.kelolaTim, name='kelolaTim'),
 ]

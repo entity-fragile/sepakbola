@@ -4,3 +4,5 @@ from django.shortcuts import render
 def manajerDashboard(request):
     return render(request, 'manajerDashboard.html')
 
+def kelolaTim(request):
+    return render(request, 'kelolaTim.html')
