@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'manajer',
     'panitia',
     'penonton',
+    'authentication'
 ]
 
 MIDDLEWARE = [
