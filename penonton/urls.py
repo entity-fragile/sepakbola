@@ -6,4 +6,5 @@ app_name = 'penonton'
 
 urlpatterns = [
     path('', views.penontonDashboard, name='penontonDashboard'),
+    path('listPertandingan', listPertandingan, name='listPertandingan'),
 ]
