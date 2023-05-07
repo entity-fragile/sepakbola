@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %} 
+    <title> Rapat Panitia </title>
+{% endblock meta %} 
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+{% block content %}
+
+<style>
+    h1 {
+        color: #252525;
+        font-family: 'Poppins';
+    }
+    * {
+        font-family: 'Poppins';
+    }
+    th {
+        color:#F3F3F4;
+        background-color: #0A00A5;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 10px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="container mx-auto">
+    <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Pilih Stadium</h1>
+    <form class = "card p-5 m-auto">
+        <label for="stadium" class="font-semibold" style=" color: #252525;">Stadium: </label>
+        <select id="stadium" name="stadium" class="block w-full p-2 my-3 border border-lime-400 rounded">
+          <option value="stadium1">Stadion Utama Gelora Bung Karno (GBK)</option>
+          <option value="stadium2">Stadion Madya Gelora Bung Karno</option>
+          <option value="stadium3">Stadion Lebak Bulus</option>
+        </select>
+        <label for="tanggal" class="font-semibold" style=" color: #252525;">Tanggal: </label>
+        <input type="date" id="tanggal" name="tanggal" class = "block w-full p-2 my-3 border border-lime-400 rounded">
+            <a href="/penonton/listwaktu/">
+                <button type="button" class="bg-lime-400 text-gray-700 py-2 px-4 rounded-md shadow hover:shadow-2xl">Next</button>
+            </a>
+                
+    </form>
+</div>
+
+{% endblock content %}

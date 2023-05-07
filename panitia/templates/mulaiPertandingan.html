@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %} 
+    <title> Rapat Panitia </title>
+{% endblock meta %} 
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+{% block content %}
+
+<style>
+    h1 {
+        color: #252525;
+        font-family: 'Poppins';
+    }
+    * {
+        font-family: 'Poppins';
+    }
+    th {
+        color:#F3F3F4;
+        background-color: #0A00A5;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 10px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+</style>
+ 
+<div class="container mx-auto">
+    <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Manage Soccer Match</h1>
+    <div class = "card">
+        <table class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th colspan="3" class=" text-center py-2 px-4">Pertandingan</th>
+                </tr>
+                <tr>
+                    <th class="border-b border-gray-200 text-center py-2 px-4">Team 1</th>
+                    <th class="border-b border-gray-200 text-center py-2 px-4">Team 2</th>
+                    <th class="border-b border-gray-200 text-center py-2 px-4"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">A</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">B</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
+                        <a href="/panitia/peristiwa/">
+                            <button type="button" class="bg-gray-700 shadow hover:shadow-2xl text-white font-bold py-2 px-4 rounded mr-2 mt-3">Masukkan Peristiwa Tim 1</button>
+                        </a>
+                        <hr class="my-5">
+                            <button type="button" class="bg-gray-700 shadow hover:shadow-2xl text-white font-bold py-2 px-4 rounded mr-2 mb-3">Masukkan Peristiwa Tim 2</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="bg-lime-400 text-gray-700 py-2 px-4 rounded-md shadow hover:shadow-2xl">Submit</button>
+    </div>
+</div>
+{% endblock content %}

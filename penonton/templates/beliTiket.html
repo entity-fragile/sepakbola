@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %} 
+    <title> Rapat Panitia </title>
+{% endblock meta %} 
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+{% block content %}
+
+<style>
+    h1 {
+        color: #252525;
+        font-family: 'Poppins';
+    }
+    * {
+        font-family: 'Poppins';
+    }
+    th {
+        color:#F3F3F4;
+        background-color: #0A00A5;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 10px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="container mx-auto">
+    <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Beli Tiket</h1>
+    <form class = "card p-5 m-auto">
+        <label for="tiket" class="font-semibold" style=" color: #252525;">Jenis Tiket: </label>
+        <select id="tiket" name="tiket" class="block w-full p-2 my-3 border border-lime-400 rounded">
+          <option value="tiket1">VIP</option>
+          <option value="tiket2">Main East</option>
+          <option value="tiket3">Kategori 1</option>
+          <option value="tiket4">Kategori 2</option>
+        </select>
+
+        <label for="pembayaran" class="font-semibold" style=" color: #252525;">Jenis Pembayaran: </label>
+        <select id="pembayaran" name="pembayaran" class="block w-full p-2 my-3 border border-lime-400 rounded">
+          <option value="pembayaran1">Paypal</option>
+          <option value="pembayaran2">Shopee Pay</option>
+          <option value="pembayaran3">Gopay</option>
+          <option value="pembayaran4">Transfer Rekening</option>
+          <option value="pembayaran5">Debit Rekening</option>
+        </select>
+
+        <a href="/penonton/">
+            <button type="button" class="bg-lime-400 text-gray-700 py-2 px-4 rounded-md shadow hover:shadow-2xl">Beli Tiket</button>
+        </a>     
+    </form>
+</div>
+
+{% endblock content %}

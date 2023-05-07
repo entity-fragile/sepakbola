@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %} 
+    <title> Rapat Panitia </title>
+{% endblock meta %} 
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+
+
+{% block content %}
+
+<style>
+    h1 {
+        color: #252525;
+        font-family: 'Poppins';
+    }
+    * {
+        font-family: 'Poppins';
+    }
+    th {
+        color:#F3F3F4;
+        background-color: #0A00A5;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 10px;
+        text-align: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="container mx-auto">
+        <form class="grid grid-cols-1 gap-5  p-5 m-auto my-20 place-items-center" style=" color: #0A00A5;">
+            <h1 class="text-2xl font-bold mb-4 text-center">Meeting Team A vs Team B</h1>
+            <label for="team-name" class="font-semibold">Meeting Output:</label>
+            <input type="text" id="isi-rapat" name="isi-rapat" required
+              class="border border-gray-300 rounded-md p-2">
+              <button type="submit" class="bg-indigo-800 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
