@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Login SOCCO </title>
+<link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+{% endblock meta %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h2>Form Login</h2>
+        <form action="#">
+            <div class="user-box">
+                <label>Username</label>
+                <input type="text" name="" required="" placeholder="Masukkan Username">
+            </div>
+            <div class="user-box">
+                <label>Password</label>
+                <input type="password" name="" required="" placeholder="Masukkan Password">
+            </div>
+            <div class="button">
+                <a href="#">Lupa Password?</a>
+            </div>
+            <div class="signup">
+                <input type="button" value="Login" class="button">
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+
+
+
+<style>
+    body {
+        font-family: 'Poppins';font-size: 15px;
+    }
+    </style>
+
+{% endblock content %}
