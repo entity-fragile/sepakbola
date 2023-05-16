@@ -13,6 +13,11 @@
             <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-700">Register Penonton</h1>
             </div>
+            {% if messages %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ messages }}</span>
+            </div>
+            {% endif %}
             <div class="m-7">
                 <form method="POST" action="/authentication/registerPenonton/post/">
                     {% csrf_token %}
@@ -102,26 +107,24 @@
                             Status
                         </label>
                         <div class="flex">
-                            <div class="flex items-center mr-4">
-                                <input id="inline-radio" type="radio" value="1" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-700">Mahasiwa</label>
-                            </div>
-                            <div class="flex items-center mr-4">
-                                <input id="inline-radio" type="radio" value="2" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-700">Dosen</label>
-                            </div>
-                            <div class="flex items-center mr-4">
-                                <input id="inline-radio" type="radio" value="3" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-700">Tendik</label>
-                            </div>
-                            <div class="flex items-center mr-4">
-                                <input id="inline-radio" type="radio" value="4" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-700">Alumni</label>
-                            </div>
-                            <div class="flex items-center mr-4">
-                                <input id="inline-radio" type="radio" value="5" name="radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="inline-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-700">Umum</label>
-                            </div>
+                            <input class="form-check-input" type="checkbox" name="status"  value="mahasiswa">
+                            <label class="form-check-label" for="mahasiswa">Mahasiswa</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="status"  value="dosen">
+                            <label class="form-check-label" for="dosen">Dosen</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="status" value="tendik" >
+                            <label class="form-check-label" for="tendik">Tendik</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="status" value="alumni" >
+                            <label class="form-check-label" for="alumni">Alumni</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="status" value="umum">
+                            <label class="form-check-label" for="umum">Umum</label>
                         </div>
                     </div>
                     <div class="mb-6">

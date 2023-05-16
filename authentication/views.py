@@ -21,12 +21,12 @@ def login(request):
     
         
 def post_login(request):
-    form = get_request_body(request)
-    print(form)
+    # form = get_request_body(request)
+    # print(form)
     validate = f"""
         SELECT username
         FROM user_system
-        WHERE username = '{form['username']}' AND password = '{form['password']}' 
+        WHERE username = '{request.POST.get("username")}' AND password = '{request.POST.get("password")}' 
     """
     response = query(validate)
     if isinstance(response, list) and len(response) > 0:
@@ -75,6 +75,8 @@ def post_register_manajer(request):
     uid = uuid.uuid4()
     print(uid)
     form = get_request_body(request)
+    status = request.POST.getlist('status')
+    print(status)
     print(form)
     
     insert_user_system = f"""
@@ -83,6 +85,7 @@ def post_register_manajer(request):
     """
    
     response = query(insert_user_system)
+    
 
     if isinstance(response, int):
         insert_non_pemain = f"""
@@ -95,10 +98,17 @@ def post_register_manajer(request):
         ('{uid}', '{form['username']}')
         """
         query(insert_manajer)
+        for elements in status:
+            insert_status_non_pemain = f"""
+            INSERT INTO Status_Non_Pemain VALUES
+            ('{uid}', '{elements}')
+            """
+            query(insert_status_non_pemain)
         return redirect('/authentication/login')    
     else:
+        print(response)
         context= {
-            'message': f"Ussername {form['username']} sudah terdaftar"
+            'messages': response.args[0].split('\n')[0]
         }
         return render(request, 'registerManajer.html', context)
 
@@ -111,6 +121,7 @@ def registerPanitia(request):
 def post_register_panitia(request):
     uid = uuid.uuid4()
     form = get_request_body(request)
+    status = request.POST.getlist('status')
     insert_user_system = f"""
         INSERT INTO User_System VALUES
         ('{form['username']}', '{form['password']}')
@@ -128,10 +139,16 @@ def post_register_panitia(request):
         ('{uid}', '{form['jabatan']}', '{form['username']}')
         """
         query(insert_panitia)
+        for elements in status:
+            insert_status_non_pemain = f"""
+            INSERT INTO Status_Non_Pemain VALUES
+            ('{uid}', '{elements}')
+            """
+            query(insert_status_non_pemain)
         return redirect('/authentication/login')
     else:
         context= {
-            'message': f"Ussername {form['username']} sudah terdaftar"
+            'messages': f"Ussername {form['username']} sudah terdaftar"
         }
         return render(request, 'registerPanitia.html', context)
 
@@ -143,6 +160,7 @@ def registerPenonton(request):
 def post_register_penonton(request):
     uid = uuid.uuid4()
     form = get_request_body(request)
+    status = request.POST.getlist('status')
     insert_user_system = f"""
         INSERT INTO User_System VALUES
         ('{form['username']}', '{form['password']}')
@@ -159,9 +177,19 @@ def post_register_penonton(request):
         ('{uid}', '{form['username']}')
         """
         query(insert_penonton)
+        for elements in status:
+            insert_status_non_pemain = f"""
+            INSERT INTO Status_Non_Pemain VALUES
+            ('{uid}', '{elements}')
+            """
+            query(insert_status_non_pemain)
         return redirect('/authentication/login')
     else:
         context= {
-            'message': f"Ussername {form['username']} sudah terdaftar"
+            'messages': f"Ussername {form['username']} sudah terdaftar"
         }
         return render(request, 'registerPenonton.html', context)
+    
+def logout(request):
+    request.session.flush()
+    return redirect('/')
