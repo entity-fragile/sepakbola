@@ -7,13 +7,14 @@
 {% block content %}
 <div class="text-center font-bold flex h-screen">
     
-    <form class="grid grid-cols-1 gap-5 bg-lime-400 rounded border-4 border-neutral-500 p-5 m-auto">
+    <form  method="POST" action = "/manajer/daftarpemain/" class="grid grid-cols-1 gap-5 bg-lime-400 rounded border-4 border-neutral-500 p-5 m-auto">
+      {% csrf_token %}
       <h1 class="text-2xl font-bold mb-4 text-center">Add Player</h1>
-      <label for="player" class="font-semibold">Player Name - Position</label>
-      <select id="player" name="player" class="block w-full p-2 mb-6 border border-gray-400 rounded">
-        <option value="player1">Player 1 - Forward</option>
-        <option value="player2">Player 2 - Midfielder</option>
-        <option value="player3">Player 3 - Defender</option>
+      <label for="pemain" class="font-semibold">Player Name - Position</label>
+      <select id="pemain" name="pemain" class="block w-full p-2 mb-6 border border-gray-400 rounded">
+        {% for pemain in list_pemain %}
+        <option value="{{ pemain.id_pemain }}">{{ pemain.nama_depan }} {{pemain.nama_belakang}} - {{pemain.posisi}}</option>
+        {% endfor %}
       </select>
       <button type="submit" class="bg-indigo-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </form>
