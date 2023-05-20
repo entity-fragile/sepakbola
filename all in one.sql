@@ -1217,7 +1217,6 @@ INSERT INTO Spesialisasi_Pelatih VALUES
 ('a3557b0d-2236-4416-aa09-6e471243194e','sundulan'),
 ('cdfb8227-39bc-4625-bda5-9344c902c55a','serangan');
 
-TRUNCATE spesialisasi_pelatih;
 INSERT INTO Tim_Pertandingan VALUES ('VelocityMax Elite','9d0f6d47-ba24-4b11-a8a1-6811c55b6bc2',4),
 	('Man Untitled','551fc7a2-727d-44e9-9ce9-cd3e9421eb23',1),
 	('HyperDrive X','7a820b29-1091-4c33-bc2b-f9c91270cbe5',3),

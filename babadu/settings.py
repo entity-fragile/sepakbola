@@ -79,18 +79,17 @@ WSGI_APPLICATION = 'babadu.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'rifqi080203',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'OPTIONS': {
-            'options': '-c search_path=sepakbola',
-        }
-    }
+        'NAME' : 'railway',
+        'USER' : 'postgres',
+        'PASSWORD' : 'OBhR5cwSuRwy3ffZRIUr',
+        'HOST' : 'containers-us-west-210.railway.app',
+        'PORT' : '6167'
+    },
 }
+
+
 
 
 # Password validation
