@@ -5,17 +5,39 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="text-center font-bold flex h-screen">
-    <form class="grid grid-cols-1 gap-5 bg-lime-400 rounded border-4 border-neutral-500 p-5 m-auto">
-      <h1 class="text-2xl font-bold mb-4 text-center">Team Registration Form</h1>
-      <label for="team-name" class="font-semibold">Team Name:</label>
-      <input type="text" id="team-name" name="team-name" required
-        class="border border-gray-300 rounded-md p-2">
-        <label for="university-name" class="font-semibold">University Name:</label>
-        <input type="text" id="university-name" name="university-name" required
-        class="border border-gray-300 rounded-md p-2">
+<div class="flex items-center bg-white">
+    
+    <div class="container mx-auto">
+        <div class="max-w-md mx-auto my-10">
+            {% if pesan_error %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ pesan_error }}</span>
+            </div>
+            {% endif %}
+            {% comment %} jika message di daftartim ada, ganti pesan_eror jadi message {% endcomment %}
+            {% if message %}
+            {% comment %} change pesan_error to message {% endcomment %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ message }}</span>
+            </div>
+            {% endif %}
+        </div>
+    
+        
+        <div class="text-center font-bold flex h-screen">
+            <form method="POST" action="/manajer/daftartim/" class="grid grid-cols-1 gap-5 bg-lime-400 rounded border-4 border-neutral-500 p-5 m-auto">
+            {% csrf_token %}
+            <h1 class="text-2xl font-bold mb-4 text-center">Team Registration Form</h1>
+            <label for="nama_tim" class="font-semibold">Team Name:</label>
+            <input class="border border-gray-300 rounded-md p-2" type="text" name="nama_tim" id="nama_tim">
+                
+                <label for="universitas" class="font-semibold">University Name:</label>
+                <input class="border border-gray-300 rounded-md p-2" type="text" name="universitas" id="universitas">
+               
+                <button type="submit" class="bg-indigo-800 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+            </form>
+        </div> 
+    </div>
+</div>
 
-        <button type="submit" class="bg-indigo-800 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
-    </form>
-</div> 
 {% endblock content %}
