@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-@$a7vmh!m0kcnohstmsp1b^@=&22=f^96!c$b4dnwcbrg=krdg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://sepakbola-production.up.railway.app/', 'localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['https://sepakbola-production.up.railway.app/', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://sepakbola-production.up.railway.app/']
 
 
 # Application definition
@@ -50,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
