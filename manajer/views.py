@@ -23,6 +23,10 @@ def kelolaTim(request):
     id = query(f"""
         SELECT id_manajer from Manajer where username = '{request.session['username']}'
     """)[0]['id_manajer']
+    test = query(f"""
+        SELECT id_manajer from Manajer where username = '{request.session['username']}'
+    """)
+    print(test)
    # handle if nama_tim is null (belum daftar tim)
     if query(f''' SELECT nama_tim FROM TIM_MANAJER WHERE id_manajer = '{id}' ''') == []:
         # create message that says belum daftar tim
