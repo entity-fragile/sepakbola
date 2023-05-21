@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-@$a7vmh!m0kcnohstmsp1b^@=&22=f^96!c$b4dnwcbrg=krdg
 DEBUG = True
 
 ALLOWED_HOSTS = ['sepakbola-production.up.railway.app', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['sepakbola-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://sepakbola-production.up.railway.app/']
 
 
 # Application definition
