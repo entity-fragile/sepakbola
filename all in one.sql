@@ -1278,18 +1278,10 @@ INSERT INTO Peristiwa VALUES
 ('63f365c5-8f0e-4ec3-b7b3-88e56ac7c34e','2023-02-25 19:46:26','Gol','4f3530c8-a7ec-4c80-a64d-ef18b111c066'),
 ('3fbb569e-f794-4378-84c3-4abf9074b4d4','2023-02-25 19:46:27','Gol','9da9dd52-4859-462e-95de-6812ee70c907');
 
+UPDATE Pemain 
+SET is_captain = FALSE
+WHERE is_captain = TRUE;
 
--- delete all values in manajer, user_system, and non_pemain CASCADE
-set search_path to sepakbola;
-DELETE FROM Manajer;
-DELETE FROM Panitia;
-DELETE FROM User_System;
-DELETE FROM Non_Pemain;
-
--- delete all values in pemain CASCADE
-DELETE FROM Pemain;
-DELETE FROM Penonton;
-DELETE FROM status_non_pemain;
 
 
 -- Create a function to perform the username check
@@ -1312,16 +1304,6 @@ BEFORE INSERT ON user_system
 FOR EACH ROW
 EXECUTE FUNCTION check_username_exists();
 
-
-
-set SEARCH_PATH to sepakbola;
-
-
-CREATE TRIGGER change_captain_trigger
-BEFORE INSERT OR UPDATE ON PEMAIN
-FOR EACH ROW
-EXECUTE FUNCTION remove_captain();
-
 CREATE OR REPLACE FUNCTION remove_captain()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -1334,10 +1316,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-UPDATE Pemain 
-SET is_captain = FALSE
-WHERE is_captain = TRUE;
+CREATE TRIGGER change_captain_trigger
+BEFORE INSERT OR UPDATE ON PEMAIN
+FOR EACH ROW
+EXECUTE FUNCTION remove_captain();
 
 -- create trigger to perform spesialisasi check Apabila sudah ada 1 pelatih, maka perlu dipastikan bahwa pelatih baru memiliki spesialisasi yang berbeda. Apabila sama, maka berikan pesan error. Apabila sudah ada 2 pelatih, maka juga berikan pesan error
 CREATE OR REPLACE FUNCTION cek_pelatih()

@@ -5,9 +5,9 @@ from psycopg2.extras import RealDictCursor
 
 try:
     connection = psycopg2.connect(user="postgres",
-                        password="OBhR5cwSuRwy3ffZRIUr",
-                        host="containers-us-west-210.railway.app",
-                        port="6167",
+                        password="kXiMjxCcTaTbkb6kDT6g",
+                        host="containers-us-west-80.railway.app",
+                        port="6050",
                         database="railway")
 
     # Create a cursor to perform database operations
@@ -27,7 +27,7 @@ def map_cursor(cursor):
 def query(query_str: str):
     hasil = []
     with connection.cursor(cursor_factory=RealDictCursor) as cursor:
-        cursor.execute("SET SEARCH_PATH TO sepakbola")
+        cursor.execute("SET SEARCH_PATH TO public")
         try:
             cursor.execute(query_str)
 

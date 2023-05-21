@@ -11,21 +11,24 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+PRODUCTION = os.getenv('DATABASE_URL') is not None
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
+DATABASE_URL = 'postgresql://postgres:kXiMjxCcTaTbkb6kDT6g@containers-us-west-80.railway.app:6050/railway'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@$a7vmh!m0kcnohstmsp1b^@=&22=f^96!c$b4dnwcbrg=krdg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -83,9 +86,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME' : 'railway',
         'USER' : 'postgres',
-        'PASSWORD' : 'OBhR5cwSuRwy3ffZRIUr',
-        'HOST' : 'containers-us-west-210.railway.app',
-        'PORT' : '6167'
+        'PASSWORD' : 'kXiMjxCcTaTbkb6kDT6g',
+        'HOST' : 'containers-us-west-80.railway.app',
+        'PORT' : '6050',
     },
 }
 
