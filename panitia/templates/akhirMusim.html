@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %} 
+    <title>Akhir Musim</title>
+{% endblock meta %} 
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-8">
+    <div class="py-8"></div>
+      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+          <table class="min-w-full leading-normal">
+            <tr>
+                <th style="color: #F3F3F4; background-color: #b30021; text-align: center;">INI AKHIR MUSIM!
+            </tr>
+            <tr>
+                <th style="color: #F3F3F4; background-color: #b30021; text-align: center;">KLIK TOMBOL NEXT UNTUK MEMBUAT PERTANDINGAN BARU
+          </table>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">Next</button>
+    </div>    
+    </div>
+  </div>
+</div>
+{% endblock content%}
