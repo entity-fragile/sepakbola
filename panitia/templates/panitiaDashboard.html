@@ -9,18 +9,19 @@
     <h1 class="text-3xl font-semibold mb-8">Dashboard Panitia</h1>
     <div class="rounded bg-lime-400 border-2 border-neutral-500 py-2 px-2 responsive">   
         <div class="flex flex-wrap -mx-2 mb-8">
+            {% for elem in non_pemain %}
             <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="first_name">
                     Nama Depan
                 </label>
-               <p class="text-gray-700 text-base"> Muhammad Rifqi Adli </p>
+               <p class="text-gray-700 text-base"> {{elem.nama_depan}} </p>
                 
             </div>
             <div class="w-full md:w-1/2 px-2">
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="last_name">
                     Nama Belakang
                 </label>
-                <p class="text-gray-700 text-base"> Gumay </p>
+                <p class="text-gray-700 text-base"> {{elem.nama_belakang}} </p>
             </div>
         </div>
     
@@ -29,13 +30,13 @@
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
                     Nomor HP
                 </label>
-                <p class="text-gray-700 text-base"> 081278519230 </p>
+                <p class="text-gray-700 text-base"> elem.nomor_hp </p>
             </div>
             <div class="w-full md:w-1/2 px-2">
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
                     Email
                 </label>
-                <p class="text-gray-700 text-base"> rifqibradley12@gmail.com </p>
+                <p class="text-gray-700 text-base"> {{elem.email}} </p>
             </div>
         </div>
     
@@ -45,36 +46,72 @@
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
                     Alamat
                 </label>
-                <p class="text-gray-700 text-base"> Jalan doang pacaran kagak </p>
+                <p class="text-gray-700 text-base"> {{elem.alamat}} </p>
             </div>
             <div class="w-full md:w-1/2 px-2">
                 <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="email">
                     Jabatan
                 </label>
-                <p class="text-gray-700 text-base"> Staff </p>
+                <p class="text-gray-700 text-base"> {{elem.jabatan}} </p>
             </div>
         </div>
+        <div class="flex flex-wrap -mx-2 mb-8">
+            <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 font-bold mb-2" for="phone_number">
+                    Status
+                </label>
+                <p class="text-gray-700 text-base"> {{elem.status}} </p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     
 
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-semibold mb-8">Rapat yang Akan Datang</h1>
 
-        <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/3 px-4 mb-4">
-                <div class="bg-white rounded-lg shadow-lg">
-                    <div class="px-6 py-4">
-                        <p class="text-gray-700 text-base">
-                            <span class="font-bold">ID_Pertandingan: </span> 124314123123<br>
-                            <span class="font-bold">Datetime: </span> 3 May 2023, 18.00 WIB <br>
-                            <span class="font-bold">Manajer Tim A </span> marcel <br>
-                            <span class="font-bold">Manajer Tim B </span> kiki <br>
-                            <span class="font-bold">Isi Rapat </span> pengunduran pertandingan  <br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% if list_rapat %}
+        <table class="table-auto mx-auto w-full">
+          <thead>
+            <tr tr class="bg-gray-200">
+              <th class="px-4 py-2">Tim Bertanding</th>
+              <th class="px-4 py-2">Tim A</th>
+              <th class="px-4 py-2">Tim B</th>
+              <th class="px-4 py-2">Datetime</th>
+              <th class="px-4 py-2">Perwakilan Panitia</th>
+              <th class="px-4 py-2">Manajer Tim A</th>
+              <th class="px-4 py-2">Manajer Tim B</th>
+              <th class="px-4 py-2">Isi Rapat</th>
+            
+            </tr>
+          </thead>
+          <tbody>
+      
+              {% if list_rapat %}
+              {% for rapat in list_rapat %}
+    
+              <tr>
+              <td class="border px-4 py-2">{{ rapat.tim_a }} vs {{ rapat.tim_b }}</td>
+              <td class="border px-4 py-2">{{ rapat.tim_a }}</td>
+              <td class="border px-4 py-2">{{ rapat.tim_b }}</td>
+              <td class="border px-4 py-2">{{ rapat.datetime }}</td>
+              <td class="border px-4 py-2">{{ rapat.p_fname }} {{ rapat.p_lname }}</td>
+              <td class="border px-4 py-2">
+                {{ rapat.ma_fname }} {{ rapat.ma_lname }}
+              </td>
+              <td class="border px-4 py-2">
+                {{ rapat.mb_fname }} {{ rapat.mb_lname }}
+              </td>
+              <td class="border px-4 py-2">{{ rapat.isi_rapat }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+        {% else %}
+        <p class="text-center">{{message}}</p>
+        
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
