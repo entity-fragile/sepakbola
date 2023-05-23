@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.penontonDashboard, name='penontonDashboard'),
     path('listPertandingan', listPertandingan, name='listPertandingan'),
     path('pilihstadium/',views.pilihStadium,name='pilihStadium'),
-    path('listwaktu/',views.listWaktu,name='listWaktu'),
+    path('listwaktu/<str:nama>/<str:tgl>/',views.listWaktu,name='listWaktu'),
     path('belitiket/',views.beliTiket,name='beliTiket'),
-    path('tiketListPertandingan/',views.tiketListPertandingan,name='tiketListPertandingan/'),
+    path('tiketListPertandingan/<str:id>/',views.tiketListPertandingan,name='tiketListPertandingan/'),
 ]
