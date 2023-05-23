@@ -14,10 +14,44 @@ def pesanStadium(request):
     return render(request, 'pesanStadium.html')
 
 def listPertandingan(request):
-    return render(request, 'listPertandingan.html')
+    list_pertandingan = query(f'''
+        SELECT string_agg(TP.Nama_Tim, ' vs ') as vs, S.Nama, P.Start_Datetime, P.End_Datetime
+        FROM PERTANDINGAN P, STADIUM S, TIM_PERTANDINGAN TP
+        WHERE TP.ID_Pertandingan = P.ID_Pertandingan
+        AND S.ID_Stadium = P.Stadium 
+        AND P.ID_Pertandingan IN (
+            SELECT ID_Pertandingan 
+            FROM Tim_Pertandingan 
+            WHERE Nama_Tim = '{request.session.get('nama_tim')}')
+        GROUP BY P.ID_Pertandingan, S.Nama
+        ''')
+        
+    context = {
+        'list_pertandingan': list_pertandingan
+        }
+    
+    return render(request, 'listPertandingan.html', context)
 
-def historyRapat(request):    
-    return render(request, 'historyRapat.html',)
+def historyRapat(request):
+    id = query(f'''
+        SELECT id_manajer from Manajer where username = '{request.session['username']}' ''')[0]['id_manajer']
+
+    list_rapat = query(f''' 
+        SELECT string_agg(TP.Nama_Tim, ' vs ') as vs, NP.Nama_Depan, NP.Nama_Belakang, S.Nama, R.Datetime, R.isi_rapat
+        FROM RAPAT R, TIM_PERTANDINGAN TP, NON_PEMAIN NP, STADIUM S, PERTANDINGAN P
+        WHERE (R.Manajer_Tim_A = '{id}' OR R.Manajer_Tim_B = '{id}')
+        AND R.Perwakilan_Panitia = NP.ID
+        AND R.ID_Pertandingan = P.ID_Pertandingan
+        AND P.Stadium = S.ID_Stadium
+        AND TP.ID_Pertandingan = R.ID_Pertandingan
+        GROUP BY R.ID_Pertandingan, NP.ID, S.ID_Stadium, R.Datetime, R.isi_rapat
+    ''')
+    
+    context = {
+        'list_rapat': list_rapat
+    }
+
+    return render(request, 'historyRapat.html',context)
 
 def kelolaTim(request):
     id = query(f"""

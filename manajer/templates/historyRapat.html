@@ -45,60 +45,57 @@
               </tr>
             </thead>
             <tbody>
+              {% for rapat in list_rapat %}
               <tr>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        A vs B
+                        {{ rapat.vs }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        XYZ
+                        {{ rapat.nama_depan }} {{ rapat.nama_belakang }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        Gelora Bung Karno
+                        {{ rapat.nama }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        5 Juli 2023, 07.00 - 09.00
+                        {{ rapat.datetime }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
-                      <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Lihat Laporan Rapat</button>
-                    </a>
+                    <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Lihat Laporan Rapat
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header border-lime-500 bg-lime-400">
+                            <h5 class="font-bold text-gray-700" id="exampleModalLabel">Laporan Rapat</h5>
+                              <svg data-bs-dismiss="modal" aria-label="Close" type="button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 btn-close">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              </svg>                              
+                          </div>
+                          <div class="modal-body">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              {{ rapat.isi_rapat }}
+                          </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </td>
               </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        C vs D
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">
-                      ABC
-                  </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        Jakarta International Stadium
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">
-                      6 Juli 2023, 10.00 - 12.00
-                  </p>
-              </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
-                        <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Lihat Laporan Rapat</button>
-                    </a>
-                </td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>

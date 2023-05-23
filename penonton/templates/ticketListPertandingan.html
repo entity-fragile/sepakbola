@@ -41,42 +41,17 @@
                 </tr>
             </thead>
             <tbody>
+                {% for tim in list_tim %}
                 <tr>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">A</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">B</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ tim.nama_tim }}</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ tim.nama_tim }}</td>
                     <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
                         <a href="/penonton/belitiket/">
                             <button type="button" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
                         </a>
                     </td>
                 </tr>
-                <tr>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">C</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">D</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                        <a href="/penonton/belitiket/">
-                            <button type="button" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">E</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">F</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                        <a href="/penonton/belitiket/">
-                            <button type="button" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">F</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">G</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                        <a href="/penonton/belitiket/">
-                            <button type="button" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
-                        </a>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
         </div>
