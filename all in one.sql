@@ -1370,8 +1370,6 @@ BEFORE INSERT OR UPDATE ON pelatih
 FOR EACH ROW
 EXECUTE FUNCTION cek_pelatih();
 
--- Create Trigger Manage Pertandingan 
-
 
 
 
