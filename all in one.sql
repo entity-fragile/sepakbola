@@ -114,8 +114,6 @@ CREATE TABLE Pelatih (
    FOREIGN KEY (ID_Pelatih) REFERENCES Non_Pemain(ID)
 );
 
-
-
 CREATE TABLE Spesialisasi_Pelatih (
   ID_Pelatih UUID REFERENCES Pelatih(ID_Pelatih),
   Spesialisasi VARCHAR(50) NOT NULL,
@@ -1373,3 +1371,48 @@ EXECUTE FUNCTION cek_pelatih();
 
 
 
+CREATE TRIGGER check_stadium_availability
+BEFORE INSERT ON Pertandingan
+FOR EACH ROW
+BEGIN
+    -- Check if the selected stadium is already booked for the chosen date and time
+    IF EXISTS (
+        SELECT 1
+        FROM Peminjaman
+        WHERE ID_Stadium = NEW.Stadium
+        AND Start_Datetime <= NEW.Start_Datetime
+        AND End_Datetime >= NEW.End_Datetime
+    ) THEN
+        -- Stadium is already booked, disable the "Next" button
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stadium telah dipesan pada tanggal dan jam ini';
+    END IF;
+END;
+
+CREATE TRIGGER insert_match
+AFTER INSERT ON Pertandingan
+FOR EACH ROW
+BEGIN
+    -- Insert new match data into the Pertandingan table
+    INSERT INTO Pertandingan (ID_Pertandingan, Start_Datetime, End_Datetime, Stadium)
+    VALUES (NEW.ID_Pertandingan, NEW.Start_Datetime, NEW.End_Datetime, NEW.Stadium);
+END;
+
+CREATE TRIGGER update_match
+AFTER UPDATE ON Pertandingan
+FOR EACH ROW
+BEGIN
+    -- Update match data in the Pertandingan table
+    UPDATE Pertandingan
+    SET Start_Datetime = NEW.Start_Datetime, End_Datetime = NEW.End_Datetime, Stadium = NEW.Stadium
+    WHERE ID_Pertandingan = NEW.ID_Pertandingan;
+END;
+
+CREATE TRIGGER delete_match
+BEFORE DELETE ON Pertandingan
+FOR EACH ROW
+BEGIN
+    -- Check if the match has already started, if yes, prevent deletion
+    IF NEW.Start_Datetime <= NOW() THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tidak dapat dihapus, pertandingan telah dimulai.';
+    END IF;
+END;

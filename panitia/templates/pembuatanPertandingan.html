@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-8">
+  <div class="py-8">
+      <div>
+          <h2 class="text-2xl font-semibold leading-tight" style="text-align: center;">Pembuatan Pertandingan</h2>
+      </div>
+      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+              <form id="formPertandingan" method="post" action="pembuatanPertandingan">
+                  {% csrf_token %}
+                  <table class="min-w-full leading-normal">
+                      <tr>
+                          <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Tanggal</th>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                              <div class="tanggal">
+                                  <input type="date" id="tanggal" name="tanggal" class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md" value="{{ request.POST.tanggal }}">
+                              </div>
+                              <div class="note">
+                                  <p class="text-sm text-red-700">Tekan tombol submit sebelum memilih stadium.</p>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Stadium</th>
+                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                              <select id="stadium" name="stadium" class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                  <option selected disabled>Cari stadium yang tersedia</option>
+                                  {% for stadium in stadiums %}
+                                      <option value="{{ stadium }}">{{ stadium }}</option>
+                                  {% endfor %}
+                              </select>
+                          </td>
+                      </tr>
+                  </table>
+              </form>
+              <div id="warningMessage" class="text-red-700 text-sm hidden mt-2">Isi informasi terlebih dahulu.</div>
+          </div>
+          <div style="text-align: center; margin-top: 20px;">
+              <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="validateForm()">Submit</button>
+              <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="validateFormAndNext()">Next</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  function validateForm() {
+      var tanggal = document.getElementById("tanggal").value;
+      var stadium = document.getElementById("stadium").value;
+
+      console.log("Tanggal:", tanggal);
+      console.log("Stadium:", stadium);
+
+      if (tanggal === '' || stadium === '') {
+          document.getElementById("warningMessage").classList.remove("hidden");
+          return false;
+      }
+
+      // You can perform additional actions or validations here before submitting the form
+
+      // Submit the form
+      document.getElementById("formPertandingan").submit();
+  }
+
+  function validateFormAndNext() {
+      var tanggal = document.getElementById("tanggal").value;
+      var stadium = document.getElementById("stadium").value;
+
+      console.log("Tanggal:", tanggal);
+      console.log("Stadium:", stadium);
+
+      if (tanggal === '' || stadium === '') {
+          document.getElementById("warningMessage").classList.remove("hidden");
+          return false;
+      }
+
+      // You can perform additional actions or validations here before moving to the next step
+
+      // Move to the next step (e.g., navigate to another page)
+      location.href = "pertandinganDuatim";
+  }
+</script>
+
+{% endblock content %}
