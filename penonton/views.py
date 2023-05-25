@@ -46,7 +46,6 @@ def listPertandingan(request):
         AND S.ID_Stadium = P.Stadium 
         GROUP BY P.ID_Pertandingan, S.Nama
         ''')
-        
     context = {
         'list_pertandingan': list_pertandingan
         }
@@ -109,7 +108,7 @@ def beliTiket(request, id):
             print(context)
             return render(request, 'beliTiket.html', context)
     
-        return redirect('/penonton/penontonDashboard')
+        return redirect('/penonton')
     return render(request,'beliTiket.html')
 
 def number_generator():
