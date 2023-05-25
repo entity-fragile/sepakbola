@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from utils.query import query
+from django.http.response import HttpResponseRedirect
+
 # Create your views here.
 def manajerDashboard(request):
     if (request.session.get('username') == None):
@@ -60,14 +62,48 @@ def get_pelatih(nama_tim):
         ''')
     return response
 
-def listStadium(request):
-    return render(request, 'listStadium.html')
-
 def pinjamStadium(request):
-    return render(request, 'pinjamStadium.html')
+    id = query(f"""
+        SELECT id_manajer from Manajer where username = '{request.session['username']}'
+    """)[0]['id_manajer']
+
+    context = {}
+
+    if (request.session.get('username') == None):
+        return redirect('/login')
+    print(id)
+
+    list_stadium = query(f''' SELECT S.nama AS stadium FROM STADIUM S''')
+   
+    context['list_stadium'] = list_stadium
+
+    if (request.method == 'POST'):
+        pilih_stadium = request.POST.get('pilih_stadium')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+
+        print(pilih_stadium)
+        print(start_date)
+        print(end_date)
+
+        id_stadium = query(f'''SELECT ID_Stadium FROM STADIUM WHERE Nama = '{pilih_stadium}'
+        ''')[0]['id_stadium']
+
+        response = query(f'''
+            INSERT INTO PEMINJAMAN (ID_Manajer, Start_Datetime, End_Datetime, ID_Stadium)
+            VALUES ('{id}', '{start_date}','{end_date}','{id_stadium}')
+        ''')
+
+        if (isinstance(response, Exception)):
+            context = {'message': "Stadium sudah di book pada tanggal tersebut."}
+            return render(request, 'pinjamStadium.html', context)
+        
+        return HttpResponseRedirect('/manajer/listStadium/')
+    
+    return render(request, 'pinjamStadium.html', context)
 
 def pesanStadium(request):
-    return render(request, 'pesanStadium.html')
+    return render(request, 'pinjamStadium.html', context)
 
 def listPertandingan(request):
     if (request.session.get('username') == None):
@@ -179,8 +215,6 @@ def delete_pelatih(request):
     print(query(f'''UPDATE PELATIH SET nama_tim = NULL WHERE id_pelatih = '{id_pelatih}' '''))
     return redirect('/manajer/kelolatim/')
     
-    
-
 def daftarTim(request):
     if (request.session.get('username') == None):
         return redirect('/login/')
@@ -246,3 +280,33 @@ def daftarPelatih(request):
         else: 
             return redirect('/manajer/kelolatim/')
     return render(request, 'registerPelatih.html',context)
+
+def listPesanStadium(request):
+    id = query(f"""
+        SELECT id_manajer FROM Manajer WHERE Username = '{request.session['username']}'
+        """)[0]['id_manajer']
+    test = query(f"""
+        SELECT id_manajer FROM Manajer WHERE Username = '{request.session['username']}'
+        """)
+    print(test)
+    context = {}
+    if query(f''' 
+        SELECT S.nama AS stadium, CONCAT(TO_CHAR(P.Start_Datetime, 'DD Month YYYY'), ' - ', TO_CHAR(P.End_Datetime, 'DD Month YYYY')) AS Waktu
+        FROM PEMINJAMAN P, STADIUM S
+        WHERE S.ID_Stadium = P.ID_Stadium
+        AND id_manajer = '{id}'
+        ''') == []:
+            context = {
+                'pesan_error': 'Anda belum memesan Stadium'
+            }
+            return render(request, 'listStadium.html', context)
+    pesan = query(f''' 
+        SELECT S.nama AS stadium, CONCAT(TO_CHAR(P.Start_Datetime, 'DD Month YYYY'), ' - ', TO_CHAR(P.End_Datetime, 'DD Month YYYY')) AS Waktu
+        FROM PEMINJAMAN P, STADIUM S
+        WHERE S.ID_Stadium = P.ID_Stadium
+        AND id_manajer = '{id}'
+    ''')
+    context['list_pesan'] = pesan
+    return render(request, 'listStadium.html', context)
+
+# pesanStadium --> insert data ke list pemesanan manajer --> pake trigger checking
