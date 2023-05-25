@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %} 
+    <title>Buat Pertandingan</title>
+{% endblock meta %} 
+
+{% block content %}
+<style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .table__body {
+        width: 95%;
+        max-height: calc(89% - 1.6rem);
+        background-color: #F3F3F4;
+    
+        margin: .8rem auto;
+        border-radius: .6rem;
+    
+        overflow: auto;
+        overflow: overlay;
+    }
+    
+    table {
+        width: 100%;
+    }
+    
+    table, th, td {
+        border-collapse: collapse;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    thead th {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #ABE63E;
+        cursor: pointer;
+        text-transform: capitalize;
+    }
+    
+    .status {
+        padding: .4rem 0;
+        border-radius: 2rem;
+        text-align: center;
+    }
+    
+    .status.available {
+        background-color: #86e49d;
+        color: #006b21;
+    }
+    
+    thead th.active,tbody td.active {
+        color: #757476;
+    }
+</style>
+
+<div class="container mx-auto px-4 sm:px-8">
+    <div class="py-8">
+
+        
+
+        <div>
+            <h2 class="text-2xl font-semibold leading-tight" style="text-align: center;">Buat Pertandingan</h2>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+                <table class="min-w-full leading-normal">
+                    <tr>
+                        <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Pilih Wasit Utama</th>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <select name="wasit_utama" class="referee-dropdown text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                <option selected disabled>Pilih disini</option>
+                                {% for referee in referees %}
+                                    <option value="{{ referee.id }}">{{ referee.nama_depan }} {{ referee.nama_belakang }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Pilih Wasit Pembantu/Hakim Garis</th>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <select name="wasit_pembantu" class="referee-dropdown text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                <option selected disabled>Pilih disini</option>
+                                {% for referee in referees %}
+                                    <option value="{{ referee.id }}">{{ referee.nama_depan }} {{ referee.nama_belakang }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Pilih Wasit Pembantu/Hakim Garis</th>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <select name="wasit_pembantu2" class="referee-dropdown text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                <option selected disabled>Pilih disini</option>
+                                {% for referee in referees %}
+                                    <option value="{{ referee.id }}">{{ referee.nama_depan }} {{ referee.nama_belakang }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #F3F3F4; text-align: center;">Pilih Wasit Cadangan</th>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <select name="wasit_cadangan" class="referee-dropdown text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                <option selected disabled>Pilih disini</option>
+                                {% for referee in referees %}
+                                    <option value="{{ referee.id }}">{{ referee.nama_depan }} {{ referee.nama_belakang }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <body>
+            <br>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="color: #252525;">Tim 1</th>
+                            <th style="color: #252525;">Tim 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 
+                                <select name="tim_1" class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                    <option selected disabled>Pilih disini</option>
+                                    {% for tim in nama_tim %}
+                                        <option>{{ tim.nama_tim }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <select name="tim_2" class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                                    <option selected disabled>Pilih disini</option>
+                                    {% for tim in nama_tim %}
+                                        <option>{{ tim.nama_tim }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </section>
+            <br>
+            
+            <div style="text-align: center;">
+                <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">Submit</button>
+            </div> 
+        </body>
+
+
+    </div>
+</div>
+
+<script>
+    const dropdowns = document.getElementsByClassName('referee-dropdown');
+    const team1Select = document.querySelector('select[name="tim_1"]');
+    const team2Select = document.querySelector('select[name="tim_2"]');
+
+    for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].addEventListener('change', function () {
+            const selectedOption = this.value;
+            
+            for (let j = 0; j < dropdowns.length; j++) {
+                if (dropdowns[j] !== this) {
+                    const options = dropdowns[j].getElementsByTagName('option');
+                    
+                    for (let k = 0; k < options.length; k++) {
+                        if (options[k].value === selectedOption) {
+                            options[k].disabled = true;
+                        } else {
+                            options[k].disabled = false;
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    team1Select.addEventListener('change', function() {
+        const selectedOption = this.value;
+        const team2Options = team2Select.getElementsByTagName('option');
+        
+        for (let i = 0; i < team2Options.length; i++) {
+            if (team2Options[i].value === selectedOption) {
+                team2Options[i].disabled = true;
+            } else {
+                team2Options[i].disabled = false;
+            }
+        }
+    });
+    
+    team2Select.addEventListener('change', function() {
+        const selectedOption = this.value;
+        const team1Options = team1Select.getElementsByTagName('option');
+        
+        for (let i = 0; i < team1Options.length; i++) {
+            if (team1Options[i].value === selectedOption) {
+                team1Options[i].disabled = true;
+            } else {
+                team1Options[i].disabled = false;
+            }
+        }
+    });
+    
+    // Add this code to reset disabled options when the form is submitted
+    const form = document.getElementById('referee-form');
+    form.addEventListener('submit', function() {
+        for (let i = 0; i < dropdowns.length; i++) {
+            const options = dropdowns[i].getElementsByTagName('option');
+            
+            for (let j = 0; j < options.length; j++) {
+                options[j].disabled = false;
+            }
+        }
+    });
+</script>
+
+{% endblock content %}
