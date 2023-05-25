@@ -29,36 +29,20 @@
               </tr>
             </thead>
             <tbody>
+              {% if list_pesan %}
+              {% for pesan in list_pesan %}
               <tr>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                    Gelora Bung Karno
+                    {{pesan.stadium}}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">15 Februari 2023 (16.00-18.00)</p>
+                  <p class="text-gray-900 whitespace-no-wrap">{{pesan.waktu}}</p>
                 </td>
               </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                    Jakarta International Stadium
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">24 Maret 2023 (13.00-15.00)</p>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                    Camp Nou
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">30 April 2023 (19.00-21.00)</p>
-                </td>
-              </tr>
+            {% endfor %}
+            {% endif %}
             </tbody>
           </table>
         </div>
