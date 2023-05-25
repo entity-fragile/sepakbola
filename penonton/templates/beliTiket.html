@@ -31,28 +31,31 @@
 
 <div class="container mx-auto">
     <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Beli Tiket</h1>
-    <form class = "card p-5 m-auto">
-        <label for="tiket" class="font-semibold" style=" color: #252525;">Jenis Tiket: </label>
-        <select id="tiket" name="tiket" class="block w-full p-2 my-3 border border-lime-400 rounded">
-          <option value="tiket1">VIP</option>
-          <option value="tiket2">Main East</option>
-          <option value="tiket3">Kategori 1</option>
-          <option value="tiket4">Kategori 2</option>
+    <form method="POST" class = "card p-5 m-auto">
+        <label for="jenis_tiket" class="font-semibold" style=" color: #252525;">Jenis Tiket: </label>
+        <select id="jenis_tiket" name="jenis_tiket" class="block w-full p-2 my-3 border border-lime-400 rounded">
+          <option value="VIP">VIP</option>
+          <option value="Main East">Main East</option>
+          <option value="Kategori 1">Kategori 1</option>
+          <option value="Kategori 2">Kategori 2</option>
         </select>
 
-        <label for="pembayaran" class="font-semibold" style=" color: #252525;">Jenis Pembayaran: </label>
-        <select id="pembayaran" name="pembayaran" class="block w-full p-2 my-3 border border-lime-400 rounded">
-          <option value="pembayaran1">Paypal</option>
-          <option value="pembayaran2">Shopee Pay</option>
-          <option value="pembayaran3">Gopay</option>
-          <option value="pembayaran4">Transfer Rekening</option>
-          <option value="pembayaran5">Debit Rekening</option>
+        <label for="jenis_pembayaran" class="font-semibold" style=" color: #252525;">Jenis Pembayaran: </label>
+        <select id="jenis_pembayaran" name="jenis_pembayaran" class="block w-full p-2 my-3 border border-lime-400 rounded">
+          <option value="Paypal">Paypal</option>
+          <option value="Shopee Pay">Shopee Pay</option>
+          <option value="Gopay">Gopay</option>
+          <option value="Transfer Rekening">Transfer Rekening</option>
+          <option value="Debit Rekening">Debit Rekening</option>
         </select>
 
-        <a href="/penonton/">
-            <button type="button" class="bg-lime-400 text-gray-700 py-2 px-4 rounded-md shadow hover:shadow-2xl">Beli Tiket</button>
-        </a>     
-    </form>
+        <button type="submit" class="bg-lime-400 text-gray-700 py-2 px-4 rounded-md shadow hover:shadow-2xl">Beli Tiket</button>    </form>
 </div>
+
+{% if message %}  
+    <div class="container mx-auto" style="padding-top: 20px;">   
+        <p>{{ message }}</p>
+    </div>   
+{% endif %}
 
 {% endblock content %}
