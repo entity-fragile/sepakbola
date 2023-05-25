@@ -5,7 +5,7 @@ app_name = 'manajer'
 
 urlpatterns = [
     path('', manajerDashboard, name='manajerDashboard'),
-    path('listStadium/', listStadium, name='listStadium'),
+    path('listStadium/', listPesanStadium, name='listPesanStadium'),
     path('pinjamStadium/', pinjamStadium, name='pinjamStadium'),
     path('pesanStadium/', pesanStadium, name='pesanStadium'),
     path('listPertandingan/', listPertandingan, name='listPertandingan'),

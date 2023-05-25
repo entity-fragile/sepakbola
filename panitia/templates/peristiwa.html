@@ -30,7 +30,7 @@
 </style>
 
 <div class="container mx-auto">
-    <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Peristiwa Tim 1</h1>
+    <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">Peristiwa Tim {{Nama_Tim}}</h1>
     <form class = "card">
             <table class="table-auto w-full">
                 <thead>
@@ -40,59 +40,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for peristiwa in list_peristiwa %}
                     <tr>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="pemain" name="pemain" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                            <option value="pemain1">Domenico Carbery</option>
-                            <option value="pemain2">Liam Clarae</option>
-                            <option value="pemain3">None</option>
-                            </select>
-                        </td>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="peristiwa" name="peristiwa" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                                <option value="peristiwa1">Kartu Kuning</option>
-                                <option value="peristiwa2">Kartu Merah</option>
-                                <option value="peristiwa3">Assist</option>
-                                <option value="peristiwa4">Gol</option>
-                                <option value="peristiwa">None</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="pemain" name="pemain" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                            <option value="pemain1">Domenico Carbery</option>
-                            <option value="pemain2">Liam Clarae</option>
-                            <option value="pemain3">None</option>
-                            </select>
-                        </td>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="peristiwa" name="peristiwa" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                                <option value="peristiwa1">Kartu Kuning</option>
-                                <option value="peristiwa2">Kartu Merah</option>
-                                <option value="peristiwa3">Assist</option>
-                                <option value="peristiwa4">Gol</option>
-                                <option value="peristiwa">None</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="pemain" name="pemain" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                            <option value="pemain1">Domenico Carbery</option>
-                            <option value="pemain2">Liam Clarae</option>
-                            <option value="pemain3">None</option>
-                            </select>
-                        </td>
-                        <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                            <select id="peristiwa" name="peristiwa" class="block w-full p-2 my-3 border border-lime-400 rounded">
-                                <option value="peristiwa1">Kartu Kuning</option>
-                                <option value="peristiwa2">Kartu Merah</option>
-                                <option value="peristiwa3">Assist</option>
-                                <option value="peristiwa4">Gol</option>
-                                <option value="peristiwa">None</option>
-                            </select>
-                        </td>
+                        <td>{{ peristiwa.nama_pemain }}</td>
+                        <td>{{peristiwa.jenis}}</td>
+                    {% endfor %}
                     </tr>
                 </tbody>
             </table>

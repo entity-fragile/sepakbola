@@ -13,6 +13,7 @@ try:
     # Create a cursor to perform database operations
     connection.autocommit = True
     cursor = connection.cursor()
+    print("Database success")
 except (Exception, Error) as error:
     print("Error while connecting to PostgreSQL", error)
 
