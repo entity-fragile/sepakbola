@@ -1371,5 +1371,48 @@ FOR EACH ROW
 EXECUTE FUNCTION cek_pelatih();
 
 
+CREATE or REPLACE FUNCTION pembelian_tiket()
+RETURNS TRIGGER AS $BODY$
+DECLARE
+sisa int;
+total_beli int;
+ID_Penonton UUID;
+ID_Pertandingan UUID;
 
 
+BEGIN
+SELECT S.kapasitas - T.jumlah_terjual INTO sisa
+FROM STADIUM S
+JOIN PERTANDINGAN P ON P.stadium = S.id_stadium
+JOIN (
+SELECT PT.id_pertandingan, COUNT(*) AS jumlah_terjual
+FROM PEMBELIAN_TIKET PT
+GROUP BY PT.id_pertandingan
+) T ON T.id_pertandingan = P.id_pertandingan
+WHERE T.id_pertandingan = NEW.id_pertandingan;
+
+
+IF (TG_OP = 'INSERT' AND sisa = 0) THEN
+RAISE EXCEPTION 'Sorry, tickets are sold out.';
+RETURN NEW;
+END IF;
+
+
+SELECT count(*) INTO total_beli, id_penonton, id_pertandingan
+FROM PEMBELIAN_TIKET PT
+WHERE PT.id_penonton = NEW.id_penonton AND PT.id_pertandingan = NEW.id_pertandingan
+GROUP BY PT.id_penonton, PT.id_pertandingan;
+
+
+IF (TG_OP = 'INSERT' AND total_beli = 5) THEN
+RAISE EXCEPTION 'Sorry, you have reached maximum purchase limit for this event.';
+RETURN NEW;
+END IF;
+RETURN NEW;
+END; $BODY$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER cek_pembelian_tiket
+BEFORE INSERT ON pembelian_tiket
+FOR EACH ROW EXECUTE PROCEDURE pembelian_tiket();

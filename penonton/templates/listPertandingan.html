@@ -35,40 +35,27 @@
               </tr>
             </thead>
             <tbody>
+              {% if list_pertandingan %}
+              {% for pertandingan in list_pertandingan %}
               <tr>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        A vs B
+                        {{ pertandingan.vs }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        Gelora Bung Karno
+                        {{ pertandingan.nama }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        5 Juli 2023, 07.00 - 09.00
+                        {{ pertandingan.start_datetime }} - {{ pertandingan.end_datetime }}
                     </p>
-                  </td>
+                </td>
               </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        C vs D
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        Jakarta International Stadium
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        7 Juli 2023, 13.00 - 15.00
-                    </p>
-                  </td>
-              </tr>
+              {% endfor %}
+              {% endif %}
             </tbody>
           </table>
         </div>

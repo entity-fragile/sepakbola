@@ -7,27 +7,38 @@
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
 {% block content %}
+<head>
+    <style>
+        h1 {
+            color: #252525;
+            font-family: 'Poppins';
+        }
+        * {
+            font-family: 'Poppins';
+        }
+        th {
+            color:#F3F3F4;
+            background-color: #0A00A5;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+            padding: 10px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+    </style>
 
-<style>
-    h1 {
-        color: #252525;
-        font-family: 'Poppins';
-    }
-    * {
-        font-family: 'Poppins';
-    }
-    th {
-        color:#F3F3F4;
-        background-color: #0A00A5;
-    }
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-        padding: 10px;
-        text-align: center;
-        background-color: #ffffff;
-        border-radius: 10px;
-    }
-</style>
+    <script type="text/javascript">
+        function beli_tiket() {
+            var currentURL = window.location.href;
+            var split = currentURL.toString().split('/');
+            var dir = "/penonton/belitiket/" + split[5] + "/";
+            document.getElementById("button_next").href = dir;
+        }
+    </script>
+</head>
+
  
 <div class="container mx-auto">
     <h1 class="text-2xl font-bold text-center my-10" style=" color: #0A00A5;">List Pertandingan</h1>
@@ -41,17 +52,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tim in list_tim %}
                 <tr>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ tim.nama_tim }}</td>
-                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ tim.nama_tim }}</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ timA }}</td>
+                    <td class="border-b border-gray-200 text-gray-700 py-2 px-4">{{ timB }}</td>
                     <td class="border-b border-gray-200 text-gray-700 py-2 px-4">
-                        <a href="/penonton/belitiket/">
-                            <button type="button" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
+                        <a id="button_next">
+                            <button type="button" onclick="beli_tiket()" class="bg-lime-400 shadow hover:shadow-2xl text-gray-700 font-bold py-2 px-4 rounded mr-2 my-3">Pilih</button>
                         </a>
                     </td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
         </div>

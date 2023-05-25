@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from utils.query import query
+import random
+from django.shortcuts import redirect
 
 # Create your views here.
 def penontonDashboard(request):
@@ -37,7 +39,19 @@ def penontonDashboard(request):
     return render(request, 'penontonDashboard.html', context)
 
 def listPertandingan(request):
-    return render(request, 'listPertandingan.html')
+    list_pertandingan = query(f'''
+        SELECT string_agg(TP.Nama_Tim, ' vs ') as vs, S.Nama, P.Start_Datetime, P.End_Datetime
+        FROM PERTANDINGAN P, STADIUM S, TIM_PERTANDINGAN TP
+        WHERE TP.ID_Pertandingan = P.ID_Pertandingan
+        AND S.ID_Stadium = P.Stadium 
+        GROUP BY P.ID_Pertandingan, S.Nama
+        ''')
+        
+    context = {
+        'list_pertandingan': list_pertandingan
+        }
+    
+    return render(request, 'listPertandingan.html', context)
 
 def pilihStadium(request):
     list_stadium = query(f'''
@@ -73,10 +87,31 @@ def tiketListPertandingan(request, id):
     ''')
 
     context = {
-        'list_tim': list_tim
+        'timA': list_tim[0].get('nama_tim'),
+        'timB': list_tim[1].get('nama_tim'),
     }
 
     return render(request,'ticketListPertandingan.html', context)
 
-def beliTiket(request):
+def beliTiket(request, id):
+    nomor_receipt = number_generator()
+    id_penonton = query(f'''
+        SELECT id_penonton from Penonton where username = '{request.session['username']}' ''')[0]['id_penonton']
+    id_pertandingan = id
+    jenis_tiket = request.POST.get('jenis_tiket')
+    jenis_pembayaran = request.POST.get('jenis_pembayaran')
+    
+    if request.method == 'POST':
+        response = query(f''' INSERT INTO Pembelian_Tiket (Nomor_Receipt, ID_Penonton, Jenis_Tiket, Jenis_Pembayaran, ID_Pertandingan) VALUES ('{nomor_receipt}', '{id_penonton}', '{jenis_tiket}', '{jenis_pembayaran}', '{id_pertandingan}') ''')
+            
+        if (isinstance(response, Exception)):
+            context = {'message': response}
+            print(context)
+            return render(request, 'beliTiket.html', context)
+    
+        return redirect('/penonton/penontonDashboard')
     return render(request,'beliTiket.html')
+
+def number_generator():
+    receipt_number = ''.join(random.choice('0123456789') for _ in range(15))
+    return receipt_number
