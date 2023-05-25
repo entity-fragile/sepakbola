@@ -1370,6 +1370,29 @@ BEFORE INSERT OR UPDATE ON pelatih
 FOR EACH ROW
 EXECUTE FUNCTION cek_pelatih();
 
+CREATE OR REPLACE FUNCTION verifikasi_peristiwa()
+RETURNS trigger AS
+$$
+ DECLARE merah integer;
+ DECLARE hitung integer;
+ BEGIN
+ SELECT count(id_pemain) into merah FROM peristiwa WHERE id_pemain=NEW.id_pemain AND jenis='Kartu Merah';
+ IF (merah > 0) THEN
+  RAISE EXCEPTION 'Pemain yang telah mendapatkan kartu merah tidak bisa melanjutkan pertandingan.';
+ ELSE
+  SELECT count(jenis) into hitung FROM peristiwa WHERE id_pemain=NEW.id_pemain AND jenis='Kartu Kuning';
+  IF (hitung = 1 AND NEW.jenis = 'Kartu Kuning') THEN
+   DELETE FROM peristiwa WHERE id_pemain=NEW.id_pemain AND jenis='Kartu Kuning';
+   NEW.jenis='Kartu Merah';
+  END IF;
+ END IF;
+ RETURN NEW;
+ END;
+$$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER VERIFIKASI_PERISTIWA
+BEFORE INSERT ON PERISTIWA
+FOR EACH ROW EXECUTE PROCEDURE verifikasi_peristiwa();
 
 

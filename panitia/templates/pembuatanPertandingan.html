@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %} 
+    <title>Pembuatan Pertandingan</title>
+{% endblock meta %} 
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-8">
+    <div class="py-8">
+      <div>
+        <h2 class="text-2xl font-semibold leading-tight" style="text-align: center;">Pembuatan Pertandingan</h2>
+    </div>
+      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+        <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+          <table class="min-w-full leading-normal">
+            <tr>
+                <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #ABE63E; text-align: center;">Stadium</th>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <select id="stadium" class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-300 dark:placeholder-gray-300 font-semibold dark:focus:ring-blue-300 dark:focus:border-blue-300 shadow-md">
+                    <option selected disabled>Cari stadium yang tersedia</option>
+                    {% for stadium in available_stadiums %}
+                        <option>{{ stadium.Nama }}</option>
+                    {% endfor %}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th style="padding: 8px 12px; font-weight: bold; text-transform: uppercase; color: #252525; background-color: #ABE63E; text-align: center;">Tanggal</th>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <div class="tanggal">
+                        <input type="date">
+                    </div>
+                </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">Pesan</button>
+    </div>    
+    </div>
+  </div>
+</div>
+{% endblock content%}

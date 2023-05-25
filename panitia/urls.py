@@ -19,4 +19,5 @@ urlpatterns = [
     path('editList', editList, name='editList'),
     path('waktuStadium', waktuStadium, name='waktuStadium'),
     path('pertandinganDuatim', pertandinganDuatim, name='pertandinganDuatim'),
+    path('mulaiPertandingan', mulaiPertandingan, name='mulaiPertandingan')
 ]
