@@ -10,7 +10,7 @@
 <div class="container mx-auto px-4 sm:px-8">
     <div class="py-8">
       <div>
-        <h2 class="text-2xl font-semibold leading-tight">Group Stage</h2>
+        <h2 class="text-2xl font-semibold leading-tight" text-align="justify-center" >Manage Pertandingan</h2>
       </div>
       <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
         <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
@@ -45,114 +45,43 @@
               </tr>
             </thead>
             <tbody>
+            {% for pertandingan in list_pertandingan %}
               <tr>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        A 
+                        -
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        A vs B
+                        {{ pertandingan.tim_lawan_tim }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        17 Dec, 2023
+                        {{ pertandingan.start_datetime }}
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p class="text-gray-900 whitespace-no-wrap">
-                        Tim A
+                        -
                     </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
+                    {% if pertandingan.done %}
+                    <a href="{% url 'panitia:peristiwa' %}?id_pertandingan={{ pertandingan.id_pertandingan }}&nama_tim={{ pertandingan.tim0 }}">
                       <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Lihat Peristiwa Tim 1</button>
                     </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                         
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        A vs C
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        27 Aug, 2023
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        Tim C
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
+                    <a href="{% url 'panitia:peristiwa' %}?id_pertandingan={{ pertandingan.id_pertandingan }}&nama_tim={{ pertandingan.tim1 }}">
                       <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Lihat Peristiwa Tim 2</button>
                     </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        B 
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        B vs E
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        14 Mar, 2023
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        -
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
+                    {% else %}
+                    <a href="{% url 'panitia:mulaiPertandingan' %}?pertandingan_id={{pertandingan.id_pertandingan}}">
                       <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Mulai</button>
                     </a>
+                    {% endif %}
                 </td>
-              </tr>
-              <tr>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                         
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        E vs D
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        25 May, 2023
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                        -
-                    </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <a>
-                      <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Belum Waktunya</button>
-                    </a>
-                </td>
-              </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>
@@ -162,6 +91,6 @@
 </div>
 <div style="text-align: center;">
     <button type="button" class="bg-indigo-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">Finish</button>
-</div> 
+</div>
 
 {% endblock content %}
