@@ -7,7 +7,6 @@ app_name = 'panitia'
 urlpatterns = [
     path('', views.panitiaDashboard, name='panitiaDashboard'),
     path('mulaiRapat/',views.mulaiRapat,name='mulaiRapat'),
-    path('pertandingan/',views.mulaiPertandingan,name='mulaiPertandingan'),
     path('peristiwa/',views.peristiwa, name='peristiwa'),
     path('managePertandingan', managePertandingan, name='managePertandingan'),
     path('pembuatanPertandingan', pembuatanPertandingan, name='pembuatanPertandingan'),
@@ -18,6 +17,7 @@ urlpatterns = [
     path('editList', editList, name='editList'),
     path('waktuStadium', waktuStadium, name='waktuStadium'),
     path('pertandinganDuatim', pertandinganDuatim, name='pertandinganDuatim'),
+    path('mulaiPertandingan', mulaiPertandingan, name='mulaiPertandingan'),
     path('mulaiRapat/startMeeting/', views.startMeeting, name='startMeeting'),
     path('mulaiRapat/submitRapat/', views.submitRapat, name='submitRapat'),
 ]
