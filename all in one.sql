@@ -143,8 +143,8 @@ CREATE TABLE Tim_Manajer (
 
 CREATE TABLE Peminjaman (
     ID_Manajer UUID REFERENCES Manajer(ID_Manajer),
-    Start_Datetime DATE NOT NULL,
-    End_Datetime DATE NOT NULL,
+    Start_Datetime TIMESTAMP NOT NULL,
+    End_Datetime TIMESTAMP NULL,
     ID_Stadium UUID REFERENCES Stadium(ID_Stadium),
     PRIMARY KEY (ID_Manajer, Start_Datetime)
 );
